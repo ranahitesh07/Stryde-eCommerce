@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stryde — Your Cart</title>
+
+  <!-- Google Fonts (same as rest of site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Your existing stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navbar (same as index.html) ───────── -->
+  <nav class="stryde-nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <a href="index.html" class="nav-logo" aria-label="Stryde home">STRYDE</a>
+
+      <ul class="nav-menu" role="list">
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">New &amp; Featured</a></li>
+        <li><a href="#" class="sale">Sale</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-wrapper" id="searchWrapper">
+          <button class="nav-icon-btn" id="searchBtn" aria-label="Toggle search" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+          </button>
+          <input type="search" class="search-input" id="searchInput" placeholder="Search..." aria-label="Search" />
+        </div>
+
+        <button class="nav-icon-btn" aria-label="View cart" onclick="window.location.href='cart.html'">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="cart-badge" aria-hidden="true"></span>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"
+                aria-expanded="false" aria-controls="mobileDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#">Men</a></li>
+      <li><a href="#">Women</a></li>
+      <li><a href="#">New &amp; Featured</a></li>
+      <li><a href="#" class="sale">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CART PAGE CONTENT
+  ═════════════════════════════════════════ -->
+  <main class="cart-page">
+    <div class="products-container">
+
+      <!-- Page title -->
+      <h1 class="cart-page-heading">Your Cart</h1>
+      <p class="cart-item-count" id="cartItemCount"></p>
+
+      <!-- Two-column layout: items | summary -->
+      <div class="cart-layout">
+
+        <!-- LEFT: item rows injected by cart.js -->
+        <div class="cart-items-list" id="cartItemsList"></div>
+
+        <!-- RIGHT: order summary panel -->
+        <aside class="cart-summary" id="cartSummary">
+          <h2 class="summary-title">Order Summary</h2>
+
+          <div class="summary-row">
+            <span class="label">Subtotal</span>
+            <span id="summarySubtotal">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="label">Shipping</span>
+            <span class="summary-free">FREE</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="label">Taxes (GST 18%)</span>
+            <span id="summaryTax">₹0</span>
+          </div>
+
+          <div class="summary-row total-row">
+            <span class="label">Total</span>
+            <span id="summaryTotal">₹0</span>
+          </div>
+
+          <a href="checkout.html" class="btn-checkout">
+            Checkout
+            <svg viewBox="0 0 24 24" width="13" height="13"
+              stroke="currentColor" fill="none"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+
+          <a href="index.html" class="btn-continue">Continue Shopping</a>
+
+          <p class="summary-notice">
+            Free shipping on all orders above ₹999.<br>Easy 30-day returns.
+          </p>
+        </aside>
+
+      </div><!-- /cart-layout -->
+
+    </div><!-- /products-container -->
+  </main>
+
+  <!-- Scripts: main.js first (navbar), then cart.js -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  
+    <footer class="stryde-footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Shoes</a>
+      <a href="#">Clothing</a>
+      <a href="#">Accessories</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Returns</a>
+      <a href="#">Order Status</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stryde. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

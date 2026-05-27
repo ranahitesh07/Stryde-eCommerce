@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stryde — Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="brand">STRYDE</span>
+      <span class="header-label">Secure Checkout</span>
+    </div>
+  </header>
+
+  <main class="checkout-wrapper">
+    <div class="checkout-container">
+
+      <!-- LEFT: User Details -->
+      <section class="checkout-form-section">
+        <h2 class="section-title">Your Details</h2>
+
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" class="form-input" placeholder="Your Name" autocomplete="name" />
+          <span class="field-error" id="error-fullName"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Delivery Address</label>
+          <input type="text" id="address" class="form-input" placeholder="Your Address" autocomplete="street-address" />
+          <span class="field-error" id="error-address"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" class="form-input" placeholder="Your Phone Number" autocomplete="tel" />
+          <span class="field-error" id="error-phone"></span>
+        </div>
+
+        <button class="place-order-btn" id="placeOrderBtn">
+          <span class="btn-text">Place Order</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </section>
+
+      <!-- DIVIDER -->
+      <div class="checkout-divider"></div>
+
+      <!-- RIGHT: Order Summary -->
+      <section class="order-summary-section">
+        <h2 class="section-title">Order Summary</h2>
+
+        <div class="cart-items" id="cartItems">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="empty-cart" id="emptyCart" style="display:none;">
+          <p>Your cart is empty.</p>
+        </div>
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal"></span>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="shipping"></span>
+        </div>
+
+        <div class="summary-row">
+          <span>Taxes (GST 18%)</span>
+          <span id="tax"></span>
+        </div>
+
+        <div class="order-total-row" id="orderTotalRow">
+          <span class="total-label">Total</span>
+          <span class="total-amount" id="orderTotal">₹0.00</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Success Overlay -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <h3 class="success-title">Order Placed!</h3>
+      <p class="success-msg">Thanks for shopping with Stryde. You'll receive a confirmation shortly.</p>
+      <div class="success-loader">
+        <div class="loader-bar"></div>
+      </div>
+      <span class="success-redirect">Redirecting you home…</span>
+    </div>
+  </div>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>

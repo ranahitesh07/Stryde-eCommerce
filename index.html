@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stryde — Move Forward</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+ 
+  <!-- ═══════════════════════════════
+       NAVBAR
+  ════════════════════════════════ -->
+  
+  <nav class="stryde-nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+ 
+      <!-- Left: Logo -->
+      <a href="#" class="nav-logo" aria-label="Stryde home">STRYDE</a>
+ 
+      <!-- Center: Menu -->
+      <ul class="nav-menu" role="list">
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">New &amp; Featured</a></li>
+        <li><a href="#" class="sale">Sale</a></li>
+      </ul>
+
+      <!-- Right: Actions -->
+      <div class="nav-actions">
+ 
+        <!-- Search -->
+        <div class="search-wrapper" id="searchWrapper">
+          <button
+            class="nav-icon-btn"
+            id="searchBtn"
+            aria-label="Toggle search"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+          </button>
+          <input
+            type="search"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </div>
+ 
+        <!-- Cart -->
+        <a href="cart.html" class="cart-link">
+          <button class="nav-icon-btn" aria-label="View cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          <span class="cart-badge">0</span>
+          </button>
+        </a>
+
+        <!-- Profile -->
+        <div class="profile-wrapper" id="profileWrapper">
+            <button class="nav-icon-btn" id="profileBtn">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+                </svg>
+            </button>
+
+      <div class="profile-dropdown" id="profileDropdown">
+        <p id="userGreeting"></p>
+        <a href="profile.html">My Profile</a>
+        <a href="login.html" id="loginLink">Login / Sign Up</a>
+        <a href="wishlist.html" id="wishlistLink" style="display:none;">Wishlist</a>
+        <a href="orders.html" id="ordersLink">My Orders</a>
+        <a href="#" id="logoutLink">Logout</a>
+      </div>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobileDrawer"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+ 
+      </div>
+    </div>
+  </nav>
+ 
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════ -->
+<section class="stryde-hero" aria-label="Hero — Move Without Limits">
+
+  <!-- Background image -->
+  <div class="hero-bg" role="img" aria-label="Runner wearing Stryde performance shoes"></div>
+
+  <!-- Film grain texture -->
+  <div class="hero-grain" aria-hidden="true"></div>
+
+  <!-- Gradient dark overlay -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- ── Content ── -->
+  <div class="hero-inner">
+
+    <!-- Eyebrow label -->
+    <p class="hero-eyebrow" aria-label="Collection: Spring / Summer 2025">
+      Spring / Summer '25
+    </p>
+
+    <!-- Main heading (2 lines max) -->
+    <h1 class="hero-heading">
+      Move<br>
+      <span class="line-dim">Without <span class="word-accent">Limits</span></span>
+    </h1>
+
+    <!-- Decorative rule -->
+    <div class="hero-rule" aria-hidden="true"></div>
+
+    <!-- Subtitle -->
+    <p class="hero-subtitle">
+      Engineered for those who refuse to slow down.
+      Performance built from the ground up.
+    </p>
+
+    <!-- CTA row -->
+    <div class="hero-cta-row">
+      <a href="#" class="btn-primary" aria-label="Shop the new collection">
+        <span>Shop Now</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <a href="#" class="btn-ghost" aria-label="Explore the full SS25 collection">
+        Explore Collection
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ── Bottom-right stats ── -->
+  <div class="hero-meta" aria-label="Brand stats">
+    <div class="meta-stat">
+      <span class="meta-stat__num">200+</span>
+      <span class="meta-stat__label">Styles</span>
+    </div>
+    <div class="meta-divider" aria-hidden="true"></div>
+    <div class="meta-stat">
+      <span class="meta-stat__num">48h</span>
+      <span class="meta-stat__label">Delivery</span>
+    </div>
+    <div class="meta-divider" aria-hidden="true"></div>
+    <div class="meta-stat">
+      <span class="meta-stat__num">4.9★</span>
+      <span class="meta-stat__label">Rated</span>
+    </div>
+  </div>
+
+  <!-- ── Scroll indicator ── -->
+  <div class="hero-scroll">
+  <span class="hero-scroll__label">Scroll</span>
+  <div class="scroll-arrow"></div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT SECTION
+════════════════════════════════════════════ -->
+<section class="stryde-products" aria-label="New arrivals">
+  <div class="products-container">
+
+    <!-- Header -->
+    <div class="section-header">
+      <div class="header-left">
+        <p class="section-eyebrow">SS '25 Collection</p>
+        <h2 class="section-title">New &amp;<br><em>Featured</em></h2>
+      </div>
+      <a href="#" class="section-cta" aria-label="Shop all products">
+        Shop All
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Filter Strip -->
+    <div class="filter-strip" role="group" aria-label="Filter by category">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="men">Men</button>
+      <button class="filter-btn" data-filter="women">Women</button>
+      <button class="filter-btn" data-filter="running">Running</button>
+      <button class="filter-btn" data-filter="training">Training</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="products-grid" role="list">
+
+      <!-- Card 1 – Featured (spans 2 cols) -->
+      <article class="product-card featured" role="listitem">
+        <div class="card-image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&q=90&auto=format&fit=crop"
+            alt="Stryde Apex Runner — Triple Black"
+            loading="lazy"
+          />
+        <div class="card-badges">
+      <span class="badge badge-new">Just In</span>
+    </div>
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="card-overlay">
+      <button class="quick-add-btn"
+  data-name="Stryde Apex Runner"
+  data-price="12995"
+  data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=85&auto=format&fit=crop">
+  Quick Add
+</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-category">Men's Running Shoes</p>
+    <h3 class="card-name">Stryde Apex Runner</h3>
+    <p class="card-colorway">Triple Black / Phantom</p>
+    <div class="card-footer">
+      <p class="card-price">₹12,995</p>
+      <div class="card-swatches" aria-label="Available colours">
+        <span class="swatch active" style="background:#111;" title="Black"></span>
+        <span class="swatch"        style="background:#f5f0e8;" title="Cream"></span>
+        <span class="swatch"        style="background:#c8ff00;" title="Volt"></span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Card 2 – Training Tee -->
+<article class="product-card" role="listitem">
+  <div class="card-image-wrap">
+    <img
+      src="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/28350220/2024/3/26/f38b23f9-bd0f-4539-bb42-a763012e0bb11711453758554NikeDri-FITPrimaryMensTrainingT-shirt1.jpg?w=800&q=85&auto=format&fit=crop"
+      alt="Stryde Dri-FIT Training Tee — Storm Blue"
+      loading="lazy"
+    />
+    <div class="card-badges">
+      <span class="badge badge-hot">Trending</span>
+    </div>
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="card-overlay">
+      <button class="quick-add-btn"
+  data-name="Dri-FIT Training Tee"
+  data-price="2495"
+  data-image="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/28350220/2024/3/26/f38b23f9-bd0f-4539-bb42-a763012e0bb11711453758554NikeDri-FITPrimaryMensTrainingT-shirt1.jpg?w=800&q=85&auto=format&fit=crop">
+  Quick Add
+</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-category">Men's Training T-Shirt</p>
+    <h3 class="card-name">Dri-FIT Training Tee</h3>
+    <p class="card-colorway">Storm Blue / White</p>
+    <div class="card-footer">
+      <p class="card-price">₹2,495</p>
+      <div class="card-swatches" aria-label="Available colours">
+        <span class="swatch active" style="background:#3a6ea8;" title="Storm Blue"></span>
+        <span class="swatch"        style="background:#111;"     title="Black"></span>
+        <span class="swatch"        style="background:#f5f0e8;" title="White"></span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Card 3 – Club Fleece Hoodie -->
+<article class="product-card" role="listitem">
+  <div class="card-image-wrap">
+    <img
+      src="https://asset.snipes.com/images/f_auto,b_gen_fill,c_auto_pad,g_auto,w_640,h_853,q_85/01418301_1/nike-sportswear-club-fleece-pullover-hoodie-black-1819-1?w=800&q=85&auto=format&fit=crop"
+      alt="Stryde Club Fleece Hoodie — Charcoal Heather"
+      loading="lazy"
+    />
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="card-overlay">
+      <button class="quick-add-btn"
+  data-name="Club Fleece Pullover Hoodie"
+  data-price="4995"
+  data-image="https://asset.snipes.com/images/f_auto,b_gen_fill,c_auto_pad,g_auto,w_640,h_853,q_85/01418301_1/nike-sportswear-club-fleece-pullover-hoodie-black-1819-1?w=800&q=85&auto=format&fit=crop">
+  Quick Add
+</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-category">Men's Fleece Hoodie</p>
+    <h3 class="card-name">Club Fleece Pullover Hoodie</h3>
+    <p class="card-colorway">Charcoal Heather / White</p>
+    <div class="card-footer">
+      <p class="card-price">₹4,995</p>
+      <div class="card-swatches" aria-label="Available colours">
+        <span class="swatch active" style="background:#4a4a46;" title="Charcoal"></span>
+        <span class="swatch"        style="background:#111;"     title="Black"></span>
+        <span class="swatch"        style="background:#8a7a6a;" title="Khaki"></span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Card 4 – Football Jersey (Sale) -->
+<article class="product-card" role="listitem">
+  <div class="card-image-wrap">
+    <img
+      src="https://www.ultrafootball.com/cdn/shop/articles/UF_Tonight_Socceroos-Matildas_NTK_MB-1_836ef022-660a-4cb3-81a6-539fa361f819.jpg?v=1758000772&width=900?w=800&q=85&auto=format&fit=crop"
+      alt="Stryde Academy Football Jersey — Scarlet / White"
+      loading="lazy"
+    />
+    <div class="card-badges">
+      <span class="badge badge-sale">Sale</span>
+    </div>
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="card-overlay">
+      <button class="quick-add-btn"
+  data-name="Academy Football Jersey"
+  data-price="2295"
+  data-image="https://www.ultrafootball.com/cdn/shop/articles/UF_Tonight_Socceroos-Matildas_NTK_MB-1_836ef022-660a-4cb3-81a6-539fa361f819.jpg?w=800&q=85&auto=format&fit=crop">
+  Quick Add
+</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-category">Football Jersey</p>
+    <h3 class="card-name">Academy Football Jersey</h3>
+    <p class="card-colorway">Scarlet / White / Team Red</p>
+    <div class="card-footer">
+      <p class="card-price">
+        <span class="original">₹3,495</span>
+        <span class="sale-price">₹2,295</span>
+      </p>
+      <div class="card-swatches" aria-label="Available colours">
+        <span class="swatch active" style="background:#c0392b;" title="Scarlet"></span>
+        <span class="swatch"        style="background:#1a3a8a;" title="Royal Blue"></span>
+        <span class="swatch"        style="background:#111;"     title="Black"></span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Card 5 – Women's Running Shoes -->
+<article class="product-card" role="listitem">
+  <div class="card-image-wrap">
+    <img
+      src="https://cdn11.bigcommerce.com/s-21x65e8kfn/images/stencil/original/products/75193/389856/NIK23779_1000_1__55960.1737123584.jpg?w=800&q=85&auto=format&fit=crop"
+      alt="Stryde Veloc W — Desert Berry"
+      loading="lazy"
+    />
+    <div class="card-badges">
+      <span class="badge badge-new">New</span>
+    </div>
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="card-overlay">
+      <button class="quick-add-btn"
+  data-name="Stryde Veloc W"
+  data-price="10995"
+  data-image="https://cdn11.bigcommerce.com/s-21x65e8kfn/images/stencil/original/products/75193/389856/NIK23779_1000_1__55960.1737123584.jpg?w=800&q=85&auto=format&fit=crop">
+  Quick Add
+</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-category">Women's Running Shoes</p>
+    <h3 class="card-name">Stryde Veloc W</h3>
+    <p class="card-colorway">Desert Berry / Sail / White</p>
+    <div class="card-footer">
+      <p class="card-price">₹10,995</p>
+      <div class="card-swatches" aria-label="Available colours">
+        <span class="swatch active" style="background:#d4748c;" title="Desert Berry"></span>
+        <span class="swatch"        style="background:#fff; border-color:#d0d0d0;" title="White"></span>
+        <span class="swatch"        style="background:#7cc0b0;" title="Mint"></span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Card 6 – Heritage Backpack -->
+<article class="product-card" role="listitem">
+  <div class="card-image-wrap">
+    <img
+      src="https://m.media-amazon.com/images/I/41eCr1N58YL._AC_SR1000_.jpg?w=800&q=85&auto=format&fit=crop"
+      alt="Stryde Heritage Backpack — Black / White"
+      loading="lazy"
+    />
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="card-overlay">
+      <button class="quick-add-btn"
+  data-name="Heritage Backpack 25L"
+  data-price="3995"
+  data-image="https://m.media-amazon.com/images/I/41eCr1N58YL._AC_SR1000_.jpg?w=800&q=85&auto=format&fit=crop">
+  Quick Add
+</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-category">Accessories</p>
+    <h3 class="card-name">Heritage Backpack 25L</h3>
+    <p class="card-colorway">Black / White / Volt</p>
+    <div class="card-footer">
+      <p class="card-price">₹3,995</p>
+      <div class="card-swatches" aria-label="Available colours">
+        <span class="swatch active" style="background:#111;"     title="Black"></span>
+        <span class="swatch"        style="background:#4a4a46;" title="Olive"></span>
+        <span class="swatch"        style="background:#1a3a8a;" title="Navy"></span>
+      </div>
+    </div>
+  </div>
+</article>
+
+    </div><!-- /products-grid -->
+
+    <!-- Footer CTAs -->
+    <div class="products-footer">
+      <a href="#" class="btn-outline">
+        Men's Shop
+        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <a href="#" class="btn-fill">
+        Women's Shop
+        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul role="list">
+        <li><a href="#">Login / Sign Up</a></li>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Logout</a></li>
+
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">New &amp; Featured</a></li>
+        <li><a href="#" class="sale">Sale</a></li>
+    </ul>
+  </div>
+
+  <footer class="stryde-footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Shoes</a>
+      <a href="#">Clothing</a>
+      <a href="#">Accessories</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Returns</a>
+      <a href="#">Order Status</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stryde. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/wishlist.js"></script>
+
+</body>
+</html>

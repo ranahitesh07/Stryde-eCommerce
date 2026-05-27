@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stryde — Create Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- ══════════════════════════════
+       LEFT — Visual panel
+  ═══════════════════════════════ -->
+  <div class="auth-visual" aria-hidden="true">
+    <div class="auth-visual-bg"></div>
+    <div class="auth-visual-overlay"></div>
+    <div class="auth-visual-content">
+
+      <!-- Logo -->
+      <a href="index.html" class="auth-visual-logo">STRYDE</a>
+
+      <!-- Bottom tagline -->
+      <div>
+        <p class="auth-visual-tagline">
+          Join<br>
+          <span class="dim">The Pack</span>
+        </p>
+        <p class="auth-visual-sub">Exclusive drops. Members-only deals. Free delivery.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       RIGHT — Signup form
+  ═══════════════════════════════ -->
+  <div class="auth-form-panel">
+    <div class="auth-form-inner">
+
+      <!-- Header -->
+      <p class="auth-form-eyebrow">Create your account</p>
+      <h1 class="auth-form-title">Sign Up</h1>
+
+      <!-- Top alert banner (shown by JS) -->
+      <div class="auth-alert" id="authAlert" role="alert" aria-live="polite"></div>
+
+      <!-- Form -->
+      <form id="signupForm" novalidate>
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <input
+            class="form-input"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your full name"
+            autocomplete="name"
+            required
+          />
+          <p class="field-error" id="nameError"></p>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@email.com"
+            autocomplete="email"
+            required
+          />
+          <p class="field-error" id="emailError"></p>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-wrap">
+            <input
+              class="form-input"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Min. 6 characters"
+              autocomplete="new-password"
+              required
+            />
+            <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">
+              <svg viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="passwordError"></p>
+
+          <!-- Password strength meter -->
+          <div class="strength-bar-wrap" id="strengthWrap">
+            <div class="strength-bar-track">
+              <div class="strength-bar-fill" id="strengthFill"></div>
+            </div>
+            <p class="strength-label" id="strengthLabel"></p>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password</label>
+          <div class="input-wrap">
+            <input
+              class="form-input"
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Repeat your password"
+              autocomplete="new-password"
+              required
+            />
+            <button type="button" class="toggle-password" id="toggleConfirmPassword" aria-label="Show confirm password">
+              <svg viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="confirmPasswordError"></p>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-auth" id="signupBtn">
+          <span>Create Account</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- Switch to login -->
+      <p class="auth-switch">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </p>
+
+    </div>
+  </div>
+
+</div><!-- /auth-page -->
+
+<script src="js/auth.js"></script>
+</body>
+</html>

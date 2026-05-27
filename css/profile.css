@@ -1,0 +1,203 @@
+/* ─────────────────────────────────────────────
+   profile.css  —  Stryde Profile Page
+   Requires: Bebas Neue + Barlow (loaded in HTML)
+   Reuses CSS variables if defined in style.css;
+   falls back to inline values if not.
+───────────────────────────────────────────── */
+
+/* ── Page shell ──────────────────────────────── */
+.profile-page {
+  min-height: calc(100vh - 64px); /* 64px = navbar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 80px;
+  background: #f7f7f5;
+}
+
+/* ── Card ────────────────────────────────────── */
+.profile-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  padding: 48px 40px 40px;
+  box-shadow: 0 2px 32px rgba(8, 8, 8, 0.08);
+
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(24px);
+  animation: profileCardIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+
+@keyframes profileCardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Avatar circle ───────────────────────────── */
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #080808;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  user-select: none;
+}
+
+/* ── Greeting ────────────────────────────────── */
+.profile-greeting {
+  text-align: center;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9a9a94;
+  margin-bottom: 6px;
+}
+
+/* ── Name ────────────────────────────────────── */
+.profile-name {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #080808;
+  margin-bottom: 6px;
+}
+
+/* ── Email ───────────────────────────────────── */
+.profile-email {
+  text-align: center;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #9a9a94;
+  letter-spacing: 0.04em;
+}
+
+/* ── Divider ─────────────────────────────────── */
+.profile-divider {
+  width: 100%;
+  height: 1px;
+  background: #f2f2f0;
+  margin: 28px 0;
+}
+
+/* ── Nav buttons ─────────────────────────────── */
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;                  /* tight 2px Nike-style gap */
+  margin-bottom: 28px;
+}
+
+.profile-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #f7f7f5;
+  color: #080808;
+  text-decoration: none;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1.5px solid transparent;
+  transition:
+    background   0.18s ease,
+    border-color 0.18s ease,
+    padding-left 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.profile-nav-btn:hover {
+  background: #f2f2f0;
+  border-color: #080808;
+  padding-left: 22px;        /* subtle slide-right on hover */
+}
+
+/* Icon */
+.profile-nav-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #4a4a46;
+  transition: color 0.18s;
+}
+
+.profile-nav-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.profile-nav-btn:hover .profile-nav-icon {
+  color: #080808;
+}
+
+/* Label fills remaining space */
+.profile-nav-label {
+  flex: 1;
+}
+
+/* Arrow */
+.profile-nav-arrow {
+  display: flex;
+  align-items: center;
+  color: #d0d0cc;
+  transition: color 0.18s, transform 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.profile-nav-arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.profile-nav-btn:hover .profile-nav-arrow {
+  color: #080808;
+  transform: translateX(3px);
+}
+
+/* ── Logout button ───────────────────────────── */
+.profile-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  color: #080808;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1.5px solid #d0d0cc;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.profile-logout-btn:hover {
+  background: #080808;
+  border-color: #080808;
+  color: #ffffff;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 36px 24px 32px;
+  }
+
+  .profile-name {
+    font-size: 2.1rem;
+  }
+}

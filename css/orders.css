@@ -1,0 +1,422 @@
+/* =============================================
+   STRYDE — MY ORDERS STYLES
+   Theme: Nike-inspired, black & white, minimal
+   Fonts: Bebas Neue (display) + DM Sans (body)
+============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black:      #0a0a0a;
+  --white:      #ffffff;
+  --gray-50:    #fafafa;
+  --gray-100:   #f4f4f4;
+  --gray-200:   #e8e8e8;
+  --gray-400:   #aaaaaa;
+  --gray-600:   #666666;
+  --green:      #1a7f3c;
+  --green-bg:   #edf7f1;
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  18px;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.07);
+  --shadow-hover: 0 10px 40px rgba(0,0,0,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--gray-100);
+  color: var(--black);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--black);
+  height: 64px;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.nav-link:hover,
+.nav-link--active {
+  color: var(--white);
+}
+
+/* ── MAIN WRAPPER ── */
+.orders-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+}
+
+/* ── PAGE HEADING ── */
+.page-heading {
+  margin-bottom: 40px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 60px);
+  letter-spacing: 3px;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--gray-600);
+  font-weight: 400;
+}
+
+/* ── ORDERS LIST ── */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── ORDER CARD ── */
+.order-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: fadeUp 0.4s ease both;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ── CARD HEADER ── */
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.order-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.order-id-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+.order-id {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: 0.3px;
+}
+
+.order-meta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.order-date {
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+.order-status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--green);
+  background: var(--green-bg);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+/* ── ITEM ROWS ── */
+.order-items {
+  padding: 4px 0;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--gray-200);
+  transition: background var(--transition);
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-row:hover {
+  background: var(--gray-50);
+}
+
+/* Thumbnail */
+.item-thumb-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+}
+
+.item-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.item-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+}
+
+.item-thumb-placeholder svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Item Details */
+.item-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-qty {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.item-line-total {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* ── CARD FOOTER ── */
+
+.order-card {
+  will-change: transform;
+}
+
+.order-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+}
+
+.order-items-count {
+  font-size: 12px;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.order-total-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.order-total-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray-600);
+}
+
+.order-total-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: var(--black);
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  color: var(--gray-400);
+  margin-bottom: 28px;
+}
+
+.empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.empty-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 2px;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+
+.empty-msg {
+  font-size: 15px;
+  color: var(--gray-600);
+  line-height: 1.65;
+  max-width: 340px;
+  margin-bottom: 36px;
+}
+
+.start-shopping-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  padding: 16px 36px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.start-shopping-btn:hover {
+  background: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+}
+
+.start-shopping-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-arrow {
+  font-size: 18px;
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger cards */
+.order-card:nth-child(1)  { animation-delay: 0ms;   }
+.order-card:nth-child(2)  { animation-delay: 60ms;  }
+.order-card:nth-child(3)  { animation-delay: 120ms; }
+.order-card:nth-child(4)  { animation-delay: 180ms; }
+.order-card:nth-child(5)  { animation-delay: 240ms; }
+.order-card:nth-child(6)  { animation-delay: 300ms; }
+.order-card:nth-child(7)  { animation-delay: 360ms; }
+.order-card:nth-child(8)  { animation-delay: 420ms; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .site-header { padding: 0 20px; }
+  .orders-wrapper { padding: 36px 16px 80px; }
+
+  .order-card-header,
+  .item-row,
+  .order-card-footer { padding-left: 20px; padding-right: 20px; }
+
+  .order-meta-right { align-items: flex-end; }
+  .page-title { font-size: 38px; }
+}
+
+@media (max-width: 400px) {
+  .order-card-header { flex-direction: column; gap: 10px; }
+  .order-meta-right { align-items: flex-start; flex-direction: row; gap: 12px; }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stryde — My Orders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/orders.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">STRYDE</a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Shop</a>
+        <a href="orders.html" class="nav-link nav-link--active">My Orders</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="orders-wrapper">
+
+    <!-- PAGE TITLE -->
+    <div class="page-heading">
+      <h1 class="page-title">My Orders</h1>
+      <p class="page-subtitle" id="orderCount"></p>
+    </div>
+
+    <!-- ORDER LIST -->
+    <div class="orders-list" id="ordersList"></div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-icon">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="16" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M22 16V12a10 10 0 0 1 20 0v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M24 32h16M24 40h10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="empty-title">No orders yet</h2>
+      <p class="empty-msg">Looks like you haven't placed any orders. Start shopping and they'll show up here.</p>
+      <a href="index.html" class="start-shopping-btn">
+        Start Shopping <span class="btn-arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ORDER CARD TEMPLATE -->
+  <template id="orderCardTemplate">
+    <article class="order-card">
+      <div class="order-card-header">
+        <div class="order-meta-left">
+          <span class="order-id-label">Order</span>
+          <span class="order-id"></span>
+        </div>
+        <div class="order-meta-right">
+          <span class="order-date"></span>
+          <span class="order-status">Shipping</span>
+        </div>
+      </div>
+
+      <div class="order-items"></div>
+
+      <div class="order-card-footer">
+        <span class="order-items-count"></span>
+        <div class="order-total-row">
+          <span class="order-total-label">Order Total</span>
+          <span class="order-total-amount"></span>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- ITEM ROW TEMPLATE -->
+  <template id="itemRowTemplate">
+    <div class="item-row">
+      <div class="item-thumb-wrap">
+        <img class="item-thumb" alt="" />
+        <div class="item-thumb-placeholder" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 16l2-6 5 2 4-6 7 4-1 6H2z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="item-details">
+        <span class="item-name"></span>
+        <span class="item-qty"></span>
+      </div>
+      <span class="item-line-total"></span>
+    </div>
+  </template>
+
+  <script src="js/orders.js"></script>
+</body>
+</html>

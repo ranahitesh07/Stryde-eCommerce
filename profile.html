@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stryde — My Profile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Your existing site stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Profile-specific styles -->
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR (same structure as every page)
+  ═══════════════════════════════════════════ -->
+  <nav class="stryde-nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <a href="index.html" class="nav-logo" aria-label="Stryde home">STRYDE</a>
+
+      <ul class="nav-menu" role="list">
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">New &amp; Featured</a></li>
+        <li><a href="#" class="sale">Sale</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-wrapper" id="searchWrapper">
+          <button class="nav-icon-btn" id="searchBtn"
+                  aria-label="Toggle search" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+          </button>
+          <input type="search" class="search-input" id="searchInput"
+                 placeholder="Search..." aria-label="Search" />
+        </div>
+
+        <a href="wishlist.html" class="nav-icon-btn" aria-label="View wishlist">
+          <svg viewBox="0 0 24 24" stroke="#080808" fill="none"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+               width="20" height="20" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </a>
+
+        <button class="nav-icon-btn" aria-label="View cart"
+                onclick="window.location.href='cart.html'">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="cart-badge" aria-hidden="true"></span>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"
+                aria-expanded="false" aria-controls="mobileDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#">Men</a></li>
+      <li><a href="#">Women</a></li>
+      <li><a href="#">New &amp; Featured</a></li>
+      <li><a href="#" class="sale">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PROFILE PAGE
+  ═══════════════════════════════════════════ -->
+  <main class="profile-page">
+
+    <div class="profile-card">
+
+      <!-- Initials avatar — letter set by JS -->
+      <div class="profile-avatar" id="profileAvatar" aria-hidden="true"></div>
+
+      <!-- Greeting line: "Hi, Hitesh" -->
+      <p class="profile-greeting" id="profileGreeting"></p>
+
+      <!-- Full name and email -->
+      <h1 class="profile-name"  id="profileName"></h1>
+      <p  class="profile-email" id="profileEmail"></p>
+
+      <!-- Horizontal rule -->
+      <div class="profile-divider" aria-hidden="true"></div>
+
+      <!-- Quick-nav buttons -->
+      <nav class="profile-nav" aria-label="Account links">
+
+        <a href="orders.html" class="profile-nav-btn">
+          <!-- Icon -->
+          <span class="profile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </span>
+          <!-- Label -->
+          <span class="profile-nav-label">My Orders</span>
+          <!-- Arrow -->
+          <span class="profile-nav-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+
+        <a href="wishlist.html" class="profile-nav-btn">
+          <span class="profile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </span>
+          <span class="profile-nav-label">Wishlist</span>
+          <span class="profile-nav-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+
+        <a href="cart.html" class="profile-nav-btn">
+          <span class="profile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </span>
+          <span class="profile-nav-label">My Cart</span>
+          <span class="profile-nav-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+
+      </nav><!-- /profile-nav -->
+
+      <!-- Logout -->
+      <button class="profile-logout-btn" id="logoutBtn"
+              aria-label="Log out of your Stryde account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             width="16" height="16" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Log Out
+      </button>
+
+    </div><!-- /profile-card -->
+
+  </main>
+
+  <!-- main.js first (navbar), then profile.js -->
+  <script src="js/main.js"></script>
+  <script src="js/profile.js"></script>
+
+  <footer class="stryde-footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Shoes</a>
+      <a href="#">Clothing</a>
+      <a href="#">Accessories</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Returns</a>
+      <a href="#">Order Status</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stryde. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
