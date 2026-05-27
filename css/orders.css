@@ -3,13 +3,7 @@
    Theme: Nike-inspired, black & white, minimal
    Fonts: Bebas Neue (display) + DM Sans (body)
 ============================================= */
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* Prevent style.css from shrinking orders layout */
 :root {
   --black:      #0a0a0a;
   --white:      #ffffff;
@@ -38,59 +32,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── HEADER ── */
-.site-header {
-  background: var(--black);
-  height: 64px;
-  padding: 0 48px;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-inner {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  color: var(--white);
-  letter-spacing: 3px;
-  text-decoration: none;
-}
-
-.header-nav {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-}
-
-.nav-link {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gray-400);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-.nav-link:hover,
-.nav-link--active {
-  color: var(--white);
-}
-
 /* ── MAIN WRAPPER ── */
 .orders-wrapper {
-  max-width: 780px;
+  width: min(1200px, 92%);
   margin: 0 auto;
-  padding: 56px 24px 100px;
+  padding: 140px 0 80px;
 }
 
 /* ── PAGE HEADING ── */
@@ -116,9 +62,9 @@ body {
 
 /* ── ORDERS LIST ── */
 .orders-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
 }
 
 /* ── ORDER CARD ── */
@@ -129,6 +75,8 @@ body {
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
   animation: fadeUp 0.4s ease both;
+  width: 100%;
+  cursor: pointer;
 }
 
 .order-card:hover {
@@ -387,6 +335,106 @@ body {
   transition: transform var(--transition);
 }
 
+.order-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.25s ease;
+
+  z-index: 9999;
+
+  backdrop-filter: blur(4px);
+}
+
+.order-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.order-modal-overlay.active .order-modal {
+  transform: scale(1);
+}
+
+.order-modal {
+  width: min(760px, 92%);
+  max-height: 88vh;
+  transform: scale(0.94);
+  transition: 0.25s ease;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 28px;
+  padding: 42px;
+  position: relative;
+  animation: modalPop 0.28s ease;
+}
+
+@keyframes modalPop {
+
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  border: none;
+  background: none;
+
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-item {
+  display: flex;
+  gap: 20px;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid #ececec;
+}
+
+.modal-item img {
+  width: 90px;
+  height: 90px;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+}
+
+.modal-item-info h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.modal-total {
+  margin-top: 28px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 30px;
+  font-weight: 700;
+}
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -402,6 +450,44 @@ body {
 .order-card:nth-child(6)  { animation-delay: 300ms; }
 .order-card:nth-child(7)  { animation-delay: 360ms; }
 .order-card:nth-child(8)  { animation-delay: 420ms; }
+
+/* ── FOOTER ── */
+.stryde-footer {
+  background: #0a0a0a;
+  color: white;
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.footer-col h4 {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.footer-col a {
+  display: block;
+  color: #aaa;
+  text-decoration: none;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #777;
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {

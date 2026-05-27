@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stryde — Saved Addresses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/orders.css" />
+
+  <style>
+    /* ── Variables ──────────────────────────── */
+    :root {
+      --black:      #080808;
+      --white:      #ffffff;
+      --off-white:  #f7f7f5;
+      --gray-100:   #f2f2f0;
+      --gray-200:   #e8e8e5;
+      --gray-300:   #d0d0cc;
+      --gray-500:   #9a9a94;
+      --gray-700:   #4a4a46;
+      --green:      #1a7a3c;
+      --red:        #e3000b;
+      --accent:     #c8ff00;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+      --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+      --radius:     4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--off-white);
+           color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    /* ── Page shell ─────────────────────────── */
+    .addresses-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 40px 100px;
+    }
+
+    /* ── Page header ────────────────────────── */
+    .page-eyebrow {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gray-500);
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .page-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1.5px; background: var(--gray-300);
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      letter-spacing: 0.03em; line-height: 0.92; color: var(--black);
+      margin-bottom: 48px;
+    }
+
+    /* ── Address grid ───────────────────────── */
+    .addresses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Address card ───────────────────────── */
+    .address-card {
+      background: var(--white);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: cardIn 0.4s var(--ease-out) forwards;
+    }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .address-card-name  { font-size: 0.9rem; font-weight: 700; color: var(--black); }
+    .address-card-phone { font-size: 0.78rem; font-weight: 500; color: var(--gray-700); }
+    .address-card-line  {
+      font-size: 0.8rem; font-weight: 400; color: var(--gray-500);
+      line-height: 1.5; margin-top: 4px;
+    }
+
+    /* ── Empty state ────────────────────────── */
+    .addresses-empty {
+      text-align: center; padding: 56px 24px;
+      background: var(--white); margin-bottom: 32px;
+      font-size: 0.9rem; color: var(--gray-500); letter-spacing: 0.04em;
+    }
+    .addresses-empty-title {
+      font-family: var(--font-display);
+      font-size: 2rem; letter-spacing: 0.04em;
+      color: var(--black); margin-bottom: 8px;
+    }
+
+    /* ── Add address section ────────────────── */
+    .add-address-section {
+      background: var(--white);
+      padding: 36px 32px;
+    }
+
+    .add-address-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem; letter-spacing: 0.04em;
+      color: var(--black); margin-bottom: 28px;
+    }
+
+    /* ── Alert banner ───────────────────────── */
+    .form-alert {
+      display: none; padding: 12px 16px;
+      border-radius: var(--radius);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+      margin-bottom: 20px; border-left: 3px solid;
+    }
+    .form-alert.visible    { display: block; }
+    .form-alert.alert-error   { background:#fff5f5; color:var(--red);   border-color:var(--red); }
+    .form-alert.alert-success { background:#f0faf4; color:var(--green); border-color:var(--green); }
+
+    /* ── Form grid ──────────────────────────── */
+    .address-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.full { grid-column: 1 / -1; }   /* spans both columns */
+
+    .form-label {
+      font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-700);
+    }
+
+    .form-input {
+      height: 50px; padding: 0 14px;
+      font-family: var(--font-body); font-size: 0.88rem;
+      color: var(--black); background: var(--gray-100);
+      border: 1.5px solid transparent; border-radius: var(--radius); outline: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+    .form-input::placeholder { color: var(--gray-500); font-weight: 300; }
+    .form-input:hover  { background: var(--gray-200); }
+    .form-input:focus  {
+      background: var(--white); border-color: var(--black);
+      box-shadow: 0 0 0 3px rgba(8,8,8,0.07);
+    }
+    .form-input.input-error { border-color: var(--red); background: #fff5f5; }
+
+    /* ── Submit button ──────────────────────── */
+    .btn-save-address {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; height: 52px; margin-top: 24px;
+      width: 100%; max-width: 260px;
+      font-family: var(--font-body); font-size: 0.74rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--white); background: var(--black);
+      border: none; border-radius: var(--radius); cursor: pointer;
+      transition: color 0.25s;
+    }
+    .btn-save-address::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent);
+      transform: translateX(-101%);
+      transition: transform 0.38s var(--ease-out);
+    }
+    .btn-save-address:hover::before { transform: translateX(0); }
+    .btn-save-address:hover         { color: var(--black); }
+    .btn-save-address span, .btn-save-address svg { position: relative; z-index: 1; }
+    .btn-save-address svg {
+      width: 13px; height: 13px; stroke: currentColor; fill: none;
+      stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── Responsive ─────────────────────────── */
+    @media (max-width: 640px) {
+      .address-form-grid { grid-template-columns: 1fr; }
+      .form-group.full   { grid-column: 1; }
+      .addresses-page    { padding: 44px 20px 72px; }
+      .add-address-section { padding: 28px 20px; }
+    }
+    @media (max-width: 400px) {
+      .addresses-page { padding: 36px 16px 60px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Navbar ─────────────────────────────── -->
+  <nav class="stryde-nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Stryde home">STRYDE</a>
+      <ul class="nav-menu" role="list">
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">New &amp; Featured</a></li>
+        <li><a href="#" class="sale">Sale</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="search-wrapper" id="searchWrapper">
+          <button class="nav-icon-btn" id="searchBtn" aria-label="Toggle search" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+          </button>
+          <input type="search" class="search-input" id="searchInput" placeholder="Search..." aria-label="Search"/>
+        </div>
+        <button class="nav-icon-btn" aria-label="Cart" onclick="window.location.href='cart.html'">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="cart-badge" aria-hidden="true"></span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"
+                aria-expanded="false" aria-controls="mobileDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#">Men</a></li>
+      <li><a href="#">Women</a></li>
+      <li><a href="#">New &amp; Featured</a></li>
+      <li><a href="#" class="sale">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE CONTENT
+  ═══════════════════════════════════════════ -->
+  <main class="addresses-page">
+
+    <p class="page-eyebrow">My Account</p>
+    <h1 class="page-title">Saved Addresses</h1>
+
+    <!-- Saved address cards rendered by JS -->
+    <div class="addresses-grid" id="addressesGrid"></div>
+
+    <!-- Empty state (shown by JS when list is empty) -->
+    <div class="addresses-empty" id="addressesEmpty" style="display:none">
+      <p class="addresses-empty-title">No saved addresses</p>
+      <p>Add your first delivery address below.</p>
+    </div>
+
+    <!-- ── Add new address form ─────────────── -->
+    <div class="add-address-section">
+
+      <h2 class="add-address-title">Add New Address</h2>
+
+      <!-- Alert (success / error shown by JS) -->
+      <div class="form-alert" id="addressAlert" role="alert" aria-live="polite"></div>
+
+      <form id="addressForm" novalidate>
+
+        <div class="address-form-grid">
+
+          <!-- Full Name -->
+          <div class="form-group">
+            <label class="form-label" for="fullName">Full Name</label>
+            <input class="form-input" type="text" id="fullName"
+                   placeholder="Hitesh Kumar" autocomplete="name" />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input class="form-input" type="tel" id="phone"
+                   placeholder="9876543210" autocomplete="tel" />
+          </div>
+
+          <!-- Address Line (full width) -->
+          <div class="form-group full">
+            <label class="form-label" for="addressLine">Address</label>
+            <input class="form-input" type="text" id="addressLine"
+                   placeholder="Flat / House No, Street, Area"
+                   autocomplete="street-address" />
+          </div>
+
+          <!-- City -->
+          <div class="form-group">
+            <label class="form-label" for="city">City</label>
+            <input class="form-input" type="text" id="city"
+                   placeholder="Mumbai" autocomplete="address-level2" />
+          </div>
+
+          <!-- State -->
+          <div class="form-group">
+            <label class="form-label" for="state">State</label>
+            <input class="form-input" type="text" id="state"
+                   placeholder="Maharashtra" autocomplete="address-level1" />
+          </div>
+
+          <!-- Pincode -->
+          <div class="form-group">
+            <label class="form-label" for="pincode">Pincode</label>
+            <input class="form-input" type="text" id="pincode"
+                   placeholder="400001" autocomplete="postal-code"
+                   maxlength="6" />
+          </div>
+
+        </div><!-- /address-form-grid -->
+
+        <button type="submit" class="btn-save-address" id="saveAddressBtn">
+          <span>Save Address</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+
+      </form>
+
+    </div><!-- /add-address-section -->
+
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/saved-addresses.js"></script>
+
+</body>
+
+<footer class="stryde-footer">
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Shoes</a>
+      <a href="#">Clothing</a>
+      <a href="#">Accessories</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Returns</a>
+      <a href="#">Order Status</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stryde. All rights reserved.</p>
+  </div>
+
+</footer>
+
+</html>

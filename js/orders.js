@@ -16,6 +16,9 @@
   const countEl     = document.getElementById('orderCount');
   const cardTpl     = document.getElementById('orderCardTemplate');
   const itemTpl     = document.getElementById('itemRowTemplate');
+  const modal =   document.getElementById('orderModal');
+  const modalContent =   document.getElementById('modalContent');
+  const closeModalBtn =  document.getElementById('closeModal');
 
   // ── LOAD ORDERS ──
   async function getOrders() {
@@ -60,7 +63,7 @@
     }
 
     emptyEl.style.display = 'none';
-    listEl.style.display  = 'flex';
+    listEl.style.display  = 'grid';
 
     // Latest first
     const sorted = [...orders].reverse();
@@ -70,13 +73,23 @@
         ? '1 order'
         : sorted.length + ' orders';
 
-    sorted.forEach(function (order) {
+sorted.forEach(function (order) {
 
-      const card = buildCard(order);
+  const card = buildCard(order);
 
-      listEl.appendChild(card);
+  if (!card) return;
 
-    });
+  card.style.cursor = 'pointer';
+
+  card.onclick = function () {
+
+    openOrderModal(order);
+
+  };
+
+  listEl.appendChild(card);
+
+});
 
   }
 
@@ -105,12 +118,67 @@
   itemsContainer.appendChild(row);
 
   card.querySelector('.order-items-count').textContent =
-    order.quantity + ' item';
+    order.quantity + (order.quantity > 1 ? ' items' : ' item');
 
   card.querySelector('.order-total-amount').textContent =
     formatCurrency(order.totalAmount);
 
-  return frag;
+  return card;
+}
+
+// ── ORDER MODAL ──
+function openOrderModal(order) {
+
+  let html = `
+
+    <h2 style="
+      font-size:48px;
+      margin-bottom:12px;
+      font-family:'Bebas Neue', sans-serif;
+    ">
+      ${order.orderId}
+    </h2>
+
+    <p style="
+      color:#666;
+      margin-bottom:32px;
+    ">
+      ${formatDate(order.orderDate)}
+    </p>
+
+    <div class="modal-item">
+
+      <img src="${order.productImage}" />
+
+      <div class="modal-item-info">
+
+        <h3>${order.productName}</h3>
+
+        <p>Qty: ${order.quantity}</p>
+
+        <p>
+          ${formatCurrency(order.productPrice)}
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="modal-total">
+
+      <span>Total</span>
+
+      <span>
+        ${formatCurrency(order.totalAmount)}
+      </span>
+
+    </div>
+
+  `;
+
+  modalContent.innerHTML = html;
+
+  modal.classList.add('active');
 }
 
   // ── BUILD ITEM ROW ──
@@ -174,7 +242,22 @@
     return str.startsWith('#') ? str : '#' + str.toUpperCase();
   }
 
+  
   // ── INIT ──
   render();
+  closeModalBtn.addEventListener('click', function () {
 
+  modal.classList.remove('active');
+
+});
+
+modal.addEventListener('click', function (e) {
+
+  if (e.target === modal) {
+
+    modal.classList.remove('active');
+
+  }
+
+});
 })();

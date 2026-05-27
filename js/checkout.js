@@ -13,6 +13,7 @@
   const orderTotalEl  = document.getElementById('orderTotal');
   const placeOrderBtn = document.getElementById('placeOrderBtn');
   const successOverlay = document.getElementById('successOverlay');
+  const savedAddressSelect = document.getElementById('savedAddress');
 
   const fields = {
     fullName: document.getElementById('fullName'),
@@ -161,6 +162,43 @@
   });
 
 // ── PLACE ORDER ──
+async function loadSavedAddresses() {
+
+  const user =
+    JSON.parse(localStorage.getItem('stryde-current-user'));
+
+  if (!user) return;
+
+  try {
+
+    const response = await fetch(
+      'http://localhost:8080/StrydeBackend/GetAddressesServlet?email='
+      + encodeURIComponent(user.email)
+    );
+
+    const addresses = await response.json();
+
+    addresses.forEach(function(address) {
+
+      const option =
+        document.createElement('option');
+
+      option.value =
+        JSON.stringify(address);
+
+      option.textContent =
+        address.fullName + ' — ' + address.city;
+
+      savedAddressSelect.appendChild(option);
+
+    });
+
+  } catch (err) {
+
+    console.error(err);
+
+  }
+}
 placeOrderBtn.addEventListener('click', function () {
   const cart = getCart();
 
@@ -262,5 +300,23 @@ placeOrderBtn.addEventListener('click', function () {
 
   // ── INIT ──
   renderCart();
+  loadSavedAddresses();
+  savedAddressSelect.addEventListener('change', function () {
+
+  if (!this.value) return;
+
+  const address =
+    JSON.parse(this.value);
+
+  fields.fullName.value =
+    address.fullName || '';
+
+  fields.address.value =
+    address.addressLine || '';
+
+  fields.phone.value =
+    address.phone || '';
+
+});
 
 })();
