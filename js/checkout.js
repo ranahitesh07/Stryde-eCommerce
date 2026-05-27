@@ -185,33 +185,58 @@ placeOrderBtn.addEventListener('click', function () {
   const tax = Math.round(subtotal * 0.18);
   const finalTotal = subtotal + tax + shipping;
 
-  // ── SAVE ORDER ✅ ──
-  let orders = JSON.parse(localStorage.getItem('stryde-orders')) || [];
+  // ── CURRENT USER ──
+  const user = JSON.parse(localStorage.getItem('stryde-current-user'));
 
-  const newOrder = {
-    id: Date.now(),
-    items: cart,
-    total: finalTotal,
-    date: new Date().toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+  // ── ORDER PAYLOAD ──
+  const payload = {
+    userEmail: user.email,
+    totalAmount: finalTotal,
+    orderDate: new Date().toISOString(),
+
+    items: cart.map(function(item) {
+      return {
+        name: item.name,
+        price: item.price,
+        image: item.image || '',
+        quantity: item.quantity
+      };
     })
   };
 
-  orders.push(newOrder);
-  localStorage.setItem('stryde-orders', JSON.stringify(orders));
+  // ── SEND TO DATABASE ──
+  fetch('http://localhost:8080/StrydeBackend/SaveOrderServlet', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => {
 
-  // Show success overlay
-  successOverlay.classList.add('active');
+    if (data.success) {
 
-  // Clear cart AFTER saving
-  localStorage.removeItem(CART_KEY);
+      // Success overlay
+      successOverlay.classList.add('active');
 
-  // Redirect
-  setTimeout(function () {
-    window.location.href = 'orders.html';
-  }, 3000);
+      // Clear cart
+      localStorage.removeItem(CART_KEY);
+
+      // Redirect
+      setTimeout(function () {
+        window.location.href = 'orders.html';
+      }, 3000);
+
+    } else {
+      alert('Order failed.');
+    }
+
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Server error.');
+  });
 });
 
   // ── HELPERS ──

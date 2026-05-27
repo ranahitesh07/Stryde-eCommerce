@@ -18,25 +18,44 @@
   const itemTpl     = document.getElementById('itemRowTemplate');
 
   // ── LOAD ORDERS ──
-  function getOrders() {
-    try {
-      const raw = localStorage.getItem(ORDERS_KEY);
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
+  async function getOrders() {
+
+  const user = JSON.parse(
+    localStorage.getItem('stryde-current-user')
+  );
+
+  if (!user || !user.email) {
+    return [];
   }
 
+  try {
+
+    const response = await fetch(
+      'http://localhost:8080/StrydeBackend/GetOrdersServlet?email='
+      + encodeURIComponent(user.email)
+    );
+
+    return await response.json();
+
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
   // ── RENDER ──
-  function render() {
+  async function render() {
+
     listEl.innerHTML = "";
-    const orders = getOrders();
+
+    const orders = await getOrders();
 
     if (!orders.length) {
+
       emptyEl.style.display = 'flex';
       listEl.style.display  = 'none';
       countEl.textContent   = '';
+
       return;
     }
 
@@ -47,55 +66,52 @@
     const sorted = [...orders].reverse();
 
     countEl.textContent =
-      sorted.length === 1 ? '1 order' : sorted.length + ' orders';
+      sorted.length === 1
+        ? '1 order'
+        : sorted.length + ' orders';
 
     sorted.forEach(function (order) {
+
       const card = buildCard(order);
+
       listEl.appendChild(card);
+
     });
+
   }
 
   // ── BUILD ORDER CARD ──
   function buildCard(order) {
-    const frag = cardTpl.content.cloneNode(true);
-    const card = frag.querySelector('.order-card');
 
-    const statusEl = card.querySelector('.order-status');
-    const daysPassed = Math.floor(
-      (Date.now() - new Date(order.date)) / (1000 * 60 * 60 * 24)
-    );
+  const frag = cardTpl.content.cloneNode(true);
+  const card = frag.querySelector('.order-card');
 
-    const status = daysPassed >= 2 ? 'Delivered' : 'Shipping';
-    statusEl.textContent = status;
+  card.querySelector('.order-id').textContent =
+    order.orderId;
 
-    // Order ID
-    card.querySelector('.order-id').textContent = formatId(order.id);
+  card.querySelector('.order-date').textContent =
+    formatDate(order.orderDate);
 
-    // Date
-    card.querySelector('.order-date').textContent = formatDate(order.date);
+  const itemsContainer =
+    card.querySelector('.order-items');
 
-    // Items
-    const itemsContainer = card.querySelector('.order-items');
-    const items = Array.isArray(order.items) ? order.items : [];
+  const row = buildItemRow({
+    name: order.productName,
+    image: order.productImage,
+    price: order.productPrice,
+    quantity: order.quantity
+  });
 
-    items.forEach(function (item) {
-      const row = buildItemRow(item);
-      itemsContainer.appendChild(row);
-    });
+  itemsContainer.appendChild(row);
 
-    // Footer
-    const totalItems = items.reduce(function (sum, i) {
-      return sum + (Number(i.quantity) || 1);
-    }, 0);
+  card.querySelector('.order-items-count').textContent =
+    order.quantity + ' item';
 
-    card.querySelector('.order-items-count').textContent =
-      totalItems === 1 ? '1 item' : totalItems + ' items';
+  card.querySelector('.order-total-amount').textContent =
+    formatCurrency(order.totalAmount);
 
-    card.querySelector('.order-total-amount').textContent =
-      formatCurrency(order.total);
-
-    return frag;
-  }
+  return frag;
+}
 
   // ── BUILD ITEM ROW ──
   function buildItemRow(item) {
